@@ -83,3 +83,4 @@ Para iniciar o teste, faça um fork deste repositório, crie uma branch com o se
 - Permitir remoção em massa de itens nos CRUDs.
 - Implementar a camada de Front-End utilizando Vue.JS
 - API Rest JSON para todos os CRUDS listados acima.
+- Uso de Repository 
