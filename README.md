@@ -5,7 +5,7 @@
 Nesse teste analisaremos seu conhecimento geral e inclusive velocidade de desenvolvimento. Abaixo explicaremos tudo o que será necessário.
 
 ## Instruções
-O desafio consiste em implementar uma REST API com CRUD usando o framework Laravel 7e banco de dados MySQL. A Funcionalidade principal é cadastrar, editar e deletar transportadoras, motoristas e caminhões. O Fluxo consiste em, uma Transportadora possui um ou vários motoristas cadastrados, um motorista pode estar cadastrado em uma ou várias Transportadoras e o Motorista possui um ou vários caminhões. Além do CRUD, o sistema deverá disponibilizar a lista dos cadastros que foram realizados.
+O desafio consiste em implementar uma REST API com CRUD usando o framework Laravel 11 e banco de dados MySQL. A Funcionalidade principal é cadastrar, editar e deletar transportadoras, motoristas e caminhões. O Fluxo consiste em, uma Transportadora possui um ou vários motoristas cadastrados, um motorista pode estar cadastrado em uma ou várias Transportadoras e o Motorista possui um ou vários caminhões. Além do CRUD, o sistema deverá disponibilizar a lista dos cadastros que foram realizados.
 
 ## Modelo de dados
 A modelagem inicial para a implementação solução é a seguinte:
