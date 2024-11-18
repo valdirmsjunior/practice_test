@@ -11,15 +11,17 @@ class Caminhao extends Model
 {
     use SoftDeletes;
 
+    protected $table = 'caminhoes';
+
     protected $fillable = [
         'placa_caminhao',
         'motorista_id',
         'modelo_id'
     ];
 
-    public function modelo(): HasOne
+    public function modelo(): BelongsTo
     {
-        return $this->hasOne(Modelo::class, 'modelo_id');
+        return $this->belongsTo(Modelo::class, 'modelo_id');
     }
 
     public function motorista(): BelongsTo
