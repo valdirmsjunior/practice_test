@@ -11,12 +11,18 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Motorista extends Model
 {
     use SoftDeletes, HasFactory;
+
     protected $fillable = [
         'nome_motorista',
         'cpf_motorista',
         'data_nascimento_motorista',
         'email_motorista'
     ];
+
+    protected $casts = [
+        'data_nascimento_motorista' => 'datetime'
+    ];
+
 
     public function caminhoes(): HasMany
     {

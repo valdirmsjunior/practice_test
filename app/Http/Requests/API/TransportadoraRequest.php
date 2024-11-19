@@ -22,8 +22,8 @@ class TransportadoraRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nome_transportadora' => 'required|max:100',
-            'cnpj_transportadora' => 'required|max:14',
+            'nome_transportadora' => 'required|max:100|string',
+            'cnpj_transportadora' => 'required|max:14|unique:transportadora',
         ];
     }
 }

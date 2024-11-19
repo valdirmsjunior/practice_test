@@ -15,6 +15,7 @@ class TransportadoraResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->id,
             'nome_transportadora' => $this->nome_transportadora,
             'cnpj_transportadora' => $this->cnpj_transportadora,
             'status_transportadora' => $this->status_transportadora,

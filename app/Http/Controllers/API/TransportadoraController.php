@@ -30,7 +30,7 @@ class TransportadoraController extends BaseController
         $transportadora = $this->transportadoraService->findById($id);
 
         if ($transportadora === false) {
-            return $this->sendError('Transportadora id {{$id}} não encontrada.');
+            return $this->sendError('Transportadora não encontrada.');
         }
 
         return $this->sendResponse(new TransportadoraResource($transportadora), 'Transportadora encontrada com sucesso.');
@@ -67,3 +67,4 @@ class TransportadoraController extends BaseController
         return $this->sendError('Transportadora não encontrada.');
     }
 }
+
