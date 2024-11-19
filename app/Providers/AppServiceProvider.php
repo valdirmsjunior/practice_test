@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Interfaces\API\TransportadoraRepositoryInterface;
+use App\Repositories\API\TransportadoraRepository;
+use App\Services\API\TransportadoraService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -11,7 +14,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind(TransportadoraRepositoryInterface::class, TransportadoraRepository::class);
+        $this->app->bind(TransportadoraService::class, function ($app) {
+            return new TransportadoraService($app->make(TransportadoraRepositoryInterface::class));
+        });
     }
 
     /**
