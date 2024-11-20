@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\ModeloController;
 use App\Http\Controllers\API\MotoristaController;
 use App\Http\Controllers\API\RegisterController;
 use App\Http\Controllers\API\TransportadoraController;
@@ -18,4 +19,5 @@ Route::controller(RegisterController::class)->group(function(){
 Route::middleware('auth:sanctum')->group(function () {
     Route::resource('transportadoras', TransportadoraController::class);
     Route::resource('motoristas', MotoristaController::class);
+    Route::resource('modelos', ModeloController::class);
 });
