@@ -2,12 +2,15 @@
 
 namespace App\Providers;
 
+use App\Interfaces\API\CaminhaoRepositoryInterface;
 use App\Interfaces\API\ModeloRepositoryInterface;
 use App\Interfaces\API\MotoristaRepositoryInterface;
 use App\Interfaces\API\TransportadoraRepositoryInterface;
+use App\Repositories\API\CaminhaoRepository;
 use App\Repositories\API\ModeloRepository;
 use App\Repositories\API\MotoristaRepository;
 use App\Repositories\API\TransportadoraRepository;
+use App\Services\API\CaminhaoService;
 use App\Services\API\ModeloService;
 use App\Services\API\MotoristaService;
 use App\Services\API\TransportadoraService;
@@ -31,6 +34,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(ModeloRepositoryInterface::class, ModeloRepository::class);
         $this->app->bind(ModeloService::class, function ($app) {
             return new ModeloService($app->make(ModeloRepositoryInterface::class));
+        });
+        $this->app->bind(CaminhaoRepositoryInterface::class, CaminhaoRepository::class);
+        $this->app->bind(CaminhaoService::class, function ($app) {
+            return new CaminhaoService($app->make(CaminhaoRepositoryInterface::class));
         });
     }
 
