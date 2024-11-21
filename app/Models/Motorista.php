@@ -32,6 +32,6 @@ class Motorista extends Model
     public function transportadoras(): BelongsToMany
     {
         return $this->belongsToMany(Transportadora::class, 'motorista_transportadoras',
-                    'transportadora_id', 'motorista_id');
+                    'motorista_id', 'transportadora_id');
     }
 }

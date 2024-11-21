@@ -2,18 +2,18 @@
 
 namespace App\Providers;
 
-use App\Interfaces\API\CaminhaoRepositoryInterface;
-use App\Interfaces\API\ModeloRepositoryInterface;
-use App\Interfaces\API\MotoristaRepositoryInterface;
-use App\Interfaces\API\TransportadoraRepositoryInterface;
-use App\Repositories\API\CaminhaoRepository;
-use App\Repositories\API\ModeloRepository;
-use App\Repositories\API\MotoristaRepository;
-use App\Repositories\API\TransportadoraRepository;
-use App\Services\API\CaminhaoService;
-use App\Services\API\ModeloService;
-use App\Services\API\MotoristaService;
-use App\Services\API\TransportadoraService;
+use App\Interfaces\Api\CaminhaoRepositoryInterface;
+use App\Interfaces\Api\ModeloRepositoryInterface;
+use App\Interfaces\Api\MotoristaRepositoryInterface;
+use App\Interfaces\Api\TransportadoraRepositoryInterface;
+use App\Repositories\Api\CaminhaoRepository;
+use App\Repositories\Api\ModeloRepository;
+use App\Repositories\Api\MotoristaRepository;
+use App\Repositories\Api\TransportadoraRepository;
+use App\Services\Api\CaminhaoService;
+use App\Services\Api\ModeloService;
+use App\Services\Api\MotoristaService;
+use App\Services\Api\TransportadoraService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

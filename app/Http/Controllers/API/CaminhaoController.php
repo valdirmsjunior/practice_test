@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\Api;
 
-use App\Http\Requests\API\Caminhao\CaminhaoRequest;
-use App\Http\Resources\API\CaminhaoResource;
-use App\Services\API\CaminhaoService;
+use App\Http\Requests\Api\Caminhao\CaminhaoRequest;
+use App\Http\Resources\Api\CaminhaoResource;
+use App\Services\Api\CaminhaoService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 

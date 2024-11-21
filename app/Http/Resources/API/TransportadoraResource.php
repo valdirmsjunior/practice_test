@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Resources\API;
+namespace App\Http\Resources\Api;
 
+use App\Models\Transportadora;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -19,6 +20,7 @@ class TransportadoraResource extends JsonResource
             'nome_transportadora' => $this->nome_transportadora,
             'cnpj_transportadora' => $this->cnpj_transportadora,
             'status_transportadora' => $this->status_transportadora,
+            'motoristas' => $this->motoristas,
         ];
     }
 }

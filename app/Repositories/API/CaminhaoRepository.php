@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories\API;
+namespace App\Repositories\Api;
 
-use App\Interfaces\API\CaminhaoRepositoryInterface;
+use App\Interfaces\Api\CaminhaoRepositoryInterface;
 use App\Models\Caminhao;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 

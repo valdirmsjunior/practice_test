@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Interfaces\API;
+namespace App\Interfaces\Api;
 
 interface CaminhaoRepositoryInterface
 {

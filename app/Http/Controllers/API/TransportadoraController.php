@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\API\BaseController;
-use App\Http\Requests\API\TransportadoraRequest;
-use App\Http\Resources\API\TransportadoraResource;
+use App\Http\Controllers\Api\BaseController;
+use App\Http\Requests\Api\Transportadora\StoreTransportadoraRequest;
+use App\Http\Requests\Api\Transportadora\UpdateTransportadoraRequest;
+use App\Http\Resources\Api\TransportadoraResource;
 use App\Models\Transportadora;
-use App\Services\API\TransportadoraService;
+use App\Services\Api\TransportadoraService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -21,6 +22,7 @@ class TransportadoraController extends BaseController
     {
         $transportadora = $this->transportadoraService->getAll();
 
+        //return $this->sendResponse($transportadora, 'Transportadoras listadas com sucesso.');
         return $this->sendResponse(TransportadoraResource::collection($transportadora),
                         'Transportadoras listadas com sucesso.');
     }
@@ -36,7 +38,7 @@ class TransportadoraController extends BaseController
         return $this->sendResponse(new TransportadoraResource($transportadora), 'Transportadora encontrada com sucesso.');
     }
 
-    public function store(TransportadoraRequest $request): JsonResponse
+    public function store(StoreTransportadoraRequest $request): JsonResponse
     {
         $data = $request->all();
         $transportadora = $this->transportadoraService->create($data);
@@ -44,14 +46,11 @@ class TransportadoraController extends BaseController
         return $this->sendResponse(new TransportadoraResource($transportadora), 'Transportadora adicionada com sucesso.');
     }
 
-    public function update(TransportadoraRequest $request, $id): JsonResponse
+    public function update(UpdateTransportadoraRequest $request, Transportadora $transportadora): JsonResponse
     {
         $data = $request->all();
-        $transportadora = $this->transportadoraService->update($data, $id);
+        $transportadora = $this->transportadoraService->update($data, $transportadora);
 
-        if ($transportadora === false) {
-            return $this->sendError('Transportadora não encontrada.');
-        }
         return $this->sendResponse(new TransportadoraResource($transportadora), 'Transportadora atualizada com sucesso.');
 
     }

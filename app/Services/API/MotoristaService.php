@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services\API;
+namespace App\Services\Api;
 
-use App\Interfaces\API\MotoristaRepositoryInterface;
+use App\Interfaces\Api\MotoristaRepositoryInterface;
 
 class MotoristaService
 {

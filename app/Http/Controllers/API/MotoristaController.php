@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\API\BaseController;
-use App\Http\Requests\API\Motorista\StoreMotoristaRequest;
-use App\Http\Requests\API\Motorista\UpdateMotoristaRequest;
-use App\Http\Resources\API\MotoristaResource;
-use App\Services\API\MotoristaService;
+use App\Http\Controllers\Api\BaseController;
+use App\Http\Requests\Api\Motorista\StoreMotoristaRequest;
+use App\Http\Requests\Api\Motorista\UpdateMotoristaRequest;
+use App\Http\Resources\Api\MotoristaResource;
+use App\Services\Api\MotoristaService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 

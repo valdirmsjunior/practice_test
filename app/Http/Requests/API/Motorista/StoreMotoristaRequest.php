@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\API\Motorista;
+namespace App\Http\Requests\Api\Motorista;
 
 use Illuminate\Foundation\Http\FormRequest;
 

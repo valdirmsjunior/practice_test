@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories\API;
+namespace App\Repositories\Api;
 
-use App\Interfaces\API\MotoristaRepositoryInterface;
+use App\Interfaces\Api\MotoristaRepositoryInterface;
 use App\Models\Motorista;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\Api;
 
-use App\Http\Requests\API\Modelo\ModeloRequest;
-use App\Http\Resources\API\ModeloResource;
-use App\Services\API\ModeloService;
+use App\Http\Requests\Api\Modelo\ModeloRequest;
+use App\Http\Resources\Api\ModeloResource;
+use App\Services\Api\ModeloService;
 use Illuminate\Http\JsonResponse;
 
 class ModeloController extends BaseController

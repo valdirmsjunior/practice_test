@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories\API;
+namespace App\Repositories\Api;
 
-use App\Interfaces\API\ModeloRepositoryInterface;
+use App\Interfaces\Api\ModeloRepositoryInterface;
 use App\Models\Modelo;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services\API;
+namespace App\Services\Api;
 
-use App\Interfaces\API\ModeloRepositoryInterface;
+use App\Interfaces\Api\ModeloRepositoryInterface;
 
 class ModeloService
 {

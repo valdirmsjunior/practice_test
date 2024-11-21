@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services\API;
+namespace App\Services\Api;
 
-use App\Interfaces\API\CaminhaoRepositoryInterface;
+use App\Interfaces\Api\CaminhaoRepositoryInterface;
 
 class CaminhaoService
 {

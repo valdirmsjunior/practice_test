@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\API\CaminhaoController;
-use App\Http\Controllers\API\ModeloController;
-use App\Http\Controllers\API\MotoristaController;
-use App\Http\Controllers\API\RegisterController;
-use App\Http\Controllers\API\TransportadoraController;
+use App\Http\Controllers\Api\CaminhaoController;
+use App\Http\Controllers\Api\ModeloController;
+use App\Http\Controllers\Api\MotoristaController;
+use App\Http\Controllers\Api\RegisterController;
+use App\Http\Controllers\Api\TransportadoraController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,9 +17,9 @@ Route::controller(RegisterController::class)->group(function(){
     Route::post('login', 'login');
 });
 
-Route::middleware('auth:sanctum')->group(function () {
-    Route::resource('transportadoras', TransportadoraController::class);
-    Route::resource('motoristas', MotoristaController::class);
-    Route::resource('modelos', ModeloController::class);
-    Route::resource('caminhoes', CaminhaoController::class);
-});
+// Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('transportadoras', TransportadoraController::class);
+    Route::apiResource('motoristas', MotoristaController::class);
+    Route::apiResource('modelos', ModeloController::class);
+    Route::apiResource('caminhoes', CaminhaoController::class);
+// });
