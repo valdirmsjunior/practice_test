@@ -3,6 +3,7 @@
 namespace App\Services\Api;
 
 use App\Interfaces\Api\CaminhaoRepositoryInterface;
+use App\Models\Caminhao;
 
 class CaminhaoService
 {
@@ -10,32 +11,32 @@ class CaminhaoService
      * Create a new class instance.
      */
     public function __construct(
-        protected CaminhaoRepositoryInterface $caminhaoRepository
+        protected CaminhaoRepositoryInterface $caminhaoRepositoryInterface
     )
     { }
 
     public function getAll()
     {
-        return $this->caminhaoRepository->getAll();
+        return $this->caminhaoRepositoryInterface->getAll();
     }
 
     public function create(array $data)
     {
-        return $this->caminhaoRepository->create($data);
+        return $this->caminhaoRepositoryInterface->create($data);
     }
 
-    public function update(array $data, $id)
+    public function update(array $data, Caminhao $caminhao)
     {
-        return $this->caminhaoRepository->update($data, $id);
+        return $this->caminhaoRepositoryInterface->update($data, $caminhao);
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
-        return $this->caminhaoRepository->delete($id);
+        return $this->caminhaoRepositoryInterface->destroy($id);
     }
 
     public function findById($id)
     {
-        return $this->caminhaoRepository->findById($id);
+        return $this->caminhaoRepositoryInterface->findById($id);
     }
 }
