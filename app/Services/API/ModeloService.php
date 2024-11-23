@@ -29,9 +29,9 @@ class ModeloService
         return $this->modeloRepository->update($data, $id);
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
-        return $this->modeloRepository->delete($id);
+        return $this->modeloRepository->destroy($id);
     }
 
     public function findById($id)

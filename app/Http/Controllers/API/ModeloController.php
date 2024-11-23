@@ -35,19 +35,21 @@ class ModeloController extends BaseController
 
     public function store(ModeloRequest $request): JsonResponse
     {
-        $data = $request->all();
-        $modelo = $this->modeloService->create($data);
+        $modelo = $this->modeloService->create($request->validated());
+
+        if ($modelo === false) {
+            return $this->sendError('Erro ao cadastrar o Modelo, tente novamente.');
+        }
 
         return $this->sendResponse(new ModeloResource($modelo), 'Modelo adicionado com sucesso.');
     }
 
     public function update(ModeloRequest $request, $id): JsonResponse
     {
-        $data = $request->all();
-        $modelo = $this->modeloService->update($data, $id);
+        $modelo = $this->modeloService->update($request->validated(), $id);
 
         if ($modelo === false) {
-            return $this->sendError('modelo não encontrado.');
+            return $this->sendError('modelo não atualizado, tente novamente.');
         }
         return $this->sendResponse(new ModeloResource($modelo), 'modelo atualizado com sucesso.');
 
@@ -55,12 +57,12 @@ class ModeloController extends BaseController
 
     public function destroy($id): JsonResponse
     {
-        $modelo = $this->modeloService->delete($id);
+        $modelo = $this->modeloService->destroy($id);
 
         if ($modelo !== false) {
             return $this->sendResponse([], 'modelo deletado com sucesso.');
         }
 
-        return $this->sendError('modelo não encontrado.');
+        return $this->sendError('modelo não deletado, tente novamente.');
     }
 }

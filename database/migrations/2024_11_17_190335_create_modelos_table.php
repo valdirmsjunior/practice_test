@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('modelo_caminhao', 50);
             $table->string('cor_caminhao', 50);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
