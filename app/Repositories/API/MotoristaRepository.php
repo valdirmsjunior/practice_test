@@ -28,9 +28,10 @@ class MotoristaRepository implements MotoristaRepositoryInterface
         return $motorista;
     }
 
-    public function update(array $data, Motorista $motorista)
+    public function update(array $data, $id)
     {
         try {
+            $motorista = Motorista::findOrFail($id);
             $motorista->update($data);
             return $motorista;
         } catch (ModelNotFoundException $ex) {

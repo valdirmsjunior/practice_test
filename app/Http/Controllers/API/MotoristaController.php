@@ -48,16 +48,15 @@ class MotoristaController extends BaseController
         return $this->sendResponse(new MotoristaResource($motoristas), 'Motorista adicionado com sucesso.');
     }
 
-    public function update(UpdateMotoristaRequest $request, Motorista $motorista): JsonResponse
+    public function update(UpdateMotoristaRequest $request, $id): JsonResponse
     {
-        $motoristas = $this->motoristaService->update($request->validated(), $motorista);
+        $motorista = $this->motoristaService->update($request->validated(), $id);
 
-        if ($motoristas === false) {
-            return $this->sendError('Não foi possivel atualizar motorista .');
+        if ($motorista !== false) {
+            return $this->sendResponse(new MotoristaResource($motorista), 'Motorista atualizado com sucesso.');
+
         }
-
-        return $this->sendResponse(new MotoristaResource($motoristas), 'Motorista atualizado com sucesso.');
-
+        return $this->sendError('Não foi possivel atualizar motorista .');
     }
 
     public function destroy($id): JsonResponse

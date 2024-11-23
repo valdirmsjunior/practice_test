@@ -22,9 +22,9 @@ class MotoristaService
         return $this->motoristaRepository->create($data);
     }
 
-    public function update(array $data, Motorista $motorista)
+    public function update(array $data, $id)
     {
-        return $this->motoristaRepository->update($data, $motorista);
+        return $this->motoristaRepository->update($data, $id);
     }
 
     public function destroy($id)
