@@ -29,9 +29,10 @@ class TransportadoraRepository implements TransportadoraRepositoryInterface
         }
     }
 
-    public function update(array $data, Transportadora $transportadora)
+    public function update(array $data, $id)
     {
         try {
+            $transportadora = Transportadora::findOrFail($id);
             $transportadora->update($data);
             return $transportadora;
         } catch (Exception $ex) {
@@ -94,7 +95,7 @@ class TransportadoraRepository implements TransportadoraRepositoryInterface
     {
         try {
             return $transportadora->motoristas()->detach($motoristaId);
-        } catch (\Throwable $th) {
+        } catch (Exception $ex) {
             return false;
         }
     }

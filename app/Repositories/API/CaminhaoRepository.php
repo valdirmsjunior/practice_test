@@ -27,9 +27,10 @@ class CaminhaoRepository implements CaminhaoRepositoryInterface
         }
     }
 
-    public function update(array $data, Caminhao $caminhao)
+    public function update(array $data, $id)
     {
         try {
+            $caminhao = Caminhao::findOrFail($id);
             $caminhao->update($data);
             return $caminhao;
         } catch (ModelNotFoundException $ex) {

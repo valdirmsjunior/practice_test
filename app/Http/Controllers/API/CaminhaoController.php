@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Requests\Api\Caminhao\CaminhaoRequest;
+use App\Http\Requests\Api\Caminhao\StoreCaminhaoRequest;
+use App\Http\Requests\Api\Caminhao\UpdateCaminhaoRequest;
 use App\Http\Resources\Api\CaminhaoResource;
 use App\Models\Caminhao;
 use App\Services\Api\CaminhaoService;
@@ -35,7 +36,7 @@ class CaminhaoController extends BaseController
         return $this->sendResponse(new CaminhaoResource($caminhao), 'caminhao encontrado com sucesso.');
     }
 
-    public function store(CaminhaoRequest $request): JsonResponse
+    public function store(StoreCaminhaoRequest $request): JsonResponse
     {
         $data = $request->all();
         $caminhao = $this->caminhaoService->create($data);
@@ -43,15 +44,15 @@ class CaminhaoController extends BaseController
         return $this->sendResponse(new CaminhaoResource($caminhao), 'caminhao adicionado com sucesso.');
     }
 
-    public function update(CaminhaoRequest $request, Caminhao $caminhao): JsonResponse
+    public function update(UpdateCaminhaoRequest $request, $id): JsonResponse
     {
-        $caminhao = $this->caminhaoService->update($request->validated(), $caminhao);
+        $caminhao = $this->caminhaoService->update($request->validated(), $id);
 
-        if ($caminhao === false) {
-            return $this->sendError('caminhao não encontrado.');
+        if ($caminhao !== false) {
+            return $this->sendResponse(new CaminhaoResource($caminhao), 'caminhao atualizado com sucesso.');
         }
-        return $this->sendResponse(new CaminhaoResource($caminhao), 'caminhao atualizado com sucesso.');
 
+        return $this->sendError('Caminhao não pode ser atualizado, tente novamente.');
     }
 
     public function destroy($id): JsonResponse

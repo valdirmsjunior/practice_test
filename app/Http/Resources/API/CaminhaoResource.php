@@ -13,12 +13,14 @@ class CaminhaoResource extends JsonResource
      * @return array<string, mixed>
      */
     public function toArray(Request $request): array
-    {
+    {//dd($request->all());
         return [
             'id' => $this->id,
             'placa_caminhao' => $this->placa_caminhao,
             'motorista_id' => $this->motorista_id,
             'modelo_id' => $this->modelo_id,
+            //'motorista' => $this->motorista,
+            //'modelo' => $this->modelo,
         ];
     }
 }

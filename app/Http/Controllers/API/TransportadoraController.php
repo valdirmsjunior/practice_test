@@ -47,12 +47,14 @@ class TransportadoraController extends BaseController
         return $this->sendResponse(new TransportadoraResource($transportadora), 'Transportadora adicionada com sucesso.');
     }
 
-    public function update(UpdateTransportadoraRequest $request, Transportadora $transportadora): JsonResponse
+    public function update(UpdateTransportadoraRequest $request, $id): JsonResponse
     {
-        $transportadora = $this->transportadoraService->update($request->validated(), $transportadora);
+        $transportadoraUpdate = $this->transportadoraService->update($request->validated(), $id);
 
-        return $this->sendResponse(new TransportadoraResource($transportadora), 'Transportadora atualizada com sucesso.');
-
+        if ($transportadoraUpdate !== false) {
+            return $this->sendResponse(new TransportadoraResource($transportadoraUpdate), 'Transportadora atualizada com sucesso.');
+        }
+        return $this->sendError('Transportadora não pode ser atualizada, tente novamente.');
     }
 
     public function destroy($id): JsonResponse

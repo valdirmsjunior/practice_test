@@ -22,9 +22,9 @@ class TransportadoraService
         return $this->transportadoraRepositoryInterface->create($data);
     }
 
-    public function update(array $data, Transportadora $transportadora)
+    public function update(array $data, $id)
     {
-        return $this->transportadoraRepositoryInterface->update($data, $transportadora);
+        return $this->transportadoraRepositoryInterface->update($data, $id);
     }
 
     public function destroy($id)

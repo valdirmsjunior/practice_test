@@ -25,9 +25,9 @@ class CaminhaoService
         return $this->caminhaoRepositoryInterface->create($data);
     }
 
-    public function update(array $data, Caminhao $caminhao)
+    public function update(array $data, $id)
     {
-        return $this->caminhaoRepositoryInterface->update($data, $caminhao);
+        return $this->caminhaoRepositoryInterface->update($data, $id);
     }
 
     public function destroy($id)
