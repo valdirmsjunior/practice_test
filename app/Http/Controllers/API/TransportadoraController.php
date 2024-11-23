@@ -9,7 +9,6 @@ use App\Http\Resources\Api\TransportadoraResource;
 use App\Models\Transportadora;
 use App\Services\Api\TransportadoraService;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class TransportadoraController extends BaseController
 {
@@ -22,7 +21,6 @@ class TransportadoraController extends BaseController
     {
         $transportadora = $this->transportadoraService->getAll();
 
-        //return $this->sendResponse($transportadora, 'Transportadoras listadas com sucesso.');
         return $this->sendResponse(TransportadoraResource::collection($transportadora),
                         'Transportadoras listadas com sucesso.');
     }
@@ -40,16 +38,18 @@ class TransportadoraController extends BaseController
 
     public function store(StoreTransportadoraRequest $request): JsonResponse
     {
-        $data = $request->all();
-        $transportadora = $this->transportadoraService->create($data);
+        $transportadora = $this->transportadoraService->create($request->validated());
+
+        if ($transportadora === false) {
+            return $this->sendError('Erro ao cadastrar .');
+        }
 
         return $this->sendResponse(new TransportadoraResource($transportadora), 'Transportadora adicionada com sucesso.');
     }
 
     public function update(UpdateTransportadoraRequest $request, Transportadora $transportadora): JsonResponse
     {
-        $data = $request->all();
-        $transportadora = $this->transportadoraService->update($data, $transportadora);
+        $transportadora = $this->transportadoraService->update($request->validated(), $transportadora);
 
         return $this->sendResponse(new TransportadoraResource($transportadora), 'Transportadora atualizada com sucesso.');
 
@@ -57,13 +57,57 @@ class TransportadoraController extends BaseController
 
     public function destroy($id): JsonResponse
     {
-        $transportadora = $this->transportadoraService->delete($id);
+        $transportadora = $this->transportadoraService->destroy($id);
 
         if ($transportadora !== false) {
             return $this->sendResponse([], 'Transportadora deletada com sucesso.');
         }
 
         return $this->sendError('Transportadora não encontrada.');
+    }
+
+    public function enable($id)
+    {
+        $status = $this->transportadoraService->enable($id);
+
+        if ($status !== false) {
+            return $this->sendResponse([], 'Status alterado com sucesso.');
+        }
+
+        return $this->sendError('Status nao pode ser atualizado, tente novamente.');
+    }
+
+    public function disable($id)
+    {
+        $status = $this->transportadoraService->disable($id);
+
+        if ($status !== false) {
+            return $this->sendResponse([], 'Status atualizado com sucesso.');
+        }
+
+        return $this->sendError('Status nao pode ser atualizado, tente novamente.');
+    }
+
+    public function addMotorista(Transportadora $transportadora, $motoristaId)
+    {
+        $addMotorista = $this->transportadoraService->addMotorista($transportadora, $motoristaId);
+
+        if ($addMotorista !== false) {
+            return $this->sendResponse([], 'Motorista adicionado a transportadora com sucesso.');
+        }
+
+        return $this->sendError('Motorista nao foi adicionado a transportadora, tente novamente.');
+    }
+
+    public function removeMotorista(Transportadora $transportadora, $motoristaId)
+    {
+        $removeMotorista = $this->transportadoraService->removeMotorista($transportadora, $motoristaId);
+
+        if ($removeMotorista !== false) {
+            return $this->sendResponse([], 'Motorista removido da transportadora com sucesso.');
+        }
+
+        return $this->sendError('Motorista nao foi removido da transportadora, tente novamente.');
     }
 }
 

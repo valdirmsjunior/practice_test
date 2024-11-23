@@ -27,14 +27,34 @@ class TransportadoraService
         return $this->transportadoraRepositoryInterface->update($data, $transportadora);
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
-        return $this->transportadoraRepositoryInterface->delete($id);
+        return $this->transportadoraRepositoryInterface->destroy($id);
     }
 
     public function findById($id)
     {
         return $this->transportadoraRepositoryInterface->findById($id);
+    }
+
+    public function enable($id)
+    {
+        return $this->transportadoraRepositoryInterface->enable($id);
+    }
+
+    public function disable($id)
+    {
+        return $this->transportadoraRepositoryInterface->disable($id);
+    }
+
+    public function addMotorista(Transportadora $transportadora, $motoristaId)
+    {
+        return $this->transportadoraRepositoryInterface->addMotorista($transportadora, $motoristaId);
+    }
+
+    public function removeMotorista(Transportadora $transportadora, $motoristaId)
+    {
+        return $this->transportadoraRepositoryInterface->removeMotorista($transportadora, $motoristaId);
     }
 
 }

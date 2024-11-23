@@ -14,26 +14,19 @@ class Cnpj implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        $cnpj = preg_replace('/\D/', '', $value);
-        if (strlen($cnpj) != 14) {
-            $fail('The :attribute deve ter 14 numeros.');
+        if (!$this->isValidCnpj($value)) {
+            $fail('O :attribute não é um CNPJ válido.');
         }
-        if (preg_match('/(\d)\1{13}/', $cnpj)) {
-            $fail('The :attribute possui muitos numeros repetidos.');
+    }
+
+    protected function isValidCnpj($cnpj)
+    {
+        $cnpj = preg_replace('/[^0-9]/', '', $cnpj);
+
+        if (preg_match('/(\d)\1{10}/', $cnpj)) {
+            return false;
         }
 
-        // $weights = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
-        // for ($t = 12; $t < 14; $t++) {
-        //     $sum = 0;
-        //     for ($i = 0; $i < $t; $i++) {
-        //         $sum += $cnpj[$i] * $weights[$i];
-        //     }
-        //     $digit = ($sum % 11) < 2 ? 0 : 11 - ($sum % 11);
-        //     if ($cnpj[$t] != $digit) {
-        //         $fail('The :attribute possui digitos verificadores invalidos.');
-        //     }
-        // }
-
-
+        return true;
     }
 }

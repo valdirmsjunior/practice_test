@@ -11,7 +11,13 @@ class MotoristaRepository implements MotoristaRepositoryInterface
 {
     public function getAll()
     {
-        return Motorista::all();
+        try {
+            return Motorista::paginate(5);
+            //return $motoristas;
+        } catch (Exception $ex) {
+            throw new Exception("Erro ao buscar motoristas: " .$ex->getMessage());
+            //return false;
+        }
     }
 
     public function create(array $data)
@@ -24,15 +30,14 @@ class MotoristaRepository implements MotoristaRepositoryInterface
         return $motorista;
     }
 
-    public function update(array $data, $id)
+    public function update(array $data, Motorista $motorista)
     {
         try {
-            $motorista = Motorista::findOrFail($id);
+            $motorista->update($data);
+            return $motorista;
         } catch (ModelNotFoundException $ex) {
             return false;
         }
-
-        return $motorista->update($data);
     }
 
     public function delete($id)
@@ -55,4 +60,5 @@ class MotoristaRepository implements MotoristaRepositoryInterface
         }
         return $motorista;
     }
+
 }

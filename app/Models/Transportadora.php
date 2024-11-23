@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\StatusTransportadora;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -20,6 +21,10 @@ class Transportadora extends Model
         'status_transportadora'
     ];
 
+    protected $casts = [
+        'status_transportadora' => StatusTransportadora::class,
+    ];
+
     protected function cnpjTransportadora(): Attribute
     {
         return Attribute::make(
@@ -29,7 +34,6 @@ class Transportadora extends Model
 
     public function motoristas(): BelongsToMany
     {
-        //return $this->hasMany(Motorista::class);
         return $this->belongsToMany(Motorista::class, 'motorista_transportadoras',
                     'transportadora_id', 'motorista_id');
     }
