@@ -26,12 +26,4 @@ class ModeloRequest extends FormRequest
             'cor_caminhao' => 'required|max:50|string',
         ];
     }
-
-    public function messages()
-    {
-        return [
-            'modelo_caminhao.required' => 'O campo modelo_caminhao é obrigatorio.',
-            'cor_caminhao.required' => 'Cor é obrigatória.',
-        ];
-    }
 }
