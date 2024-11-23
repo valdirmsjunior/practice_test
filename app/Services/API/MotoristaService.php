@@ -3,6 +3,7 @@
 namespace App\Services\Api;
 
 use App\Interfaces\Api\MotoristaRepositoryInterface;
+use App\Models\Motorista;
 
 class MotoristaService
 {
@@ -21,14 +22,14 @@ class MotoristaService
         return $this->motoristaRepository->create($data);
     }
 
-    public function update(array $data, $id)
+    public function update(array $data, Motorista $motorista)
     {
-        return $this->motoristaRepository->update($data, $id);
+        return $this->motoristaRepository->update($data, $motorista);
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
-        return $this->motoristaRepository->delete($id);
+        return $this->motoristaRepository->destroy($id);
     }
 
     public function findById($id)

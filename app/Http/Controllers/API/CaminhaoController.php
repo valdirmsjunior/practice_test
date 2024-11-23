@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\Api\Caminhao\CaminhaoRequest;
 use App\Http\Resources\Api\CaminhaoResource;
+use App\Models\Caminhao;
 use App\Services\Api\CaminhaoService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -42,10 +43,9 @@ class CaminhaoController extends BaseController
         return $this->sendResponse(new CaminhaoResource($caminhao), 'caminhao adicionado com sucesso.');
     }
 
-    public function update(CaminhaoRequest $request, $id): JsonResponse
+    public function update(CaminhaoRequest $request, Caminhao $caminhao): JsonResponse
     {
-        $data = $request->all();
-        $caminhao = $this->caminhaoService->update($data, $id);
+        $caminhao = $this->caminhaoService->update($request->validated(), $caminhao);
 
         if ($caminhao === false) {
             return $this->sendError('caminhao não encontrado.');
@@ -56,7 +56,7 @@ class CaminhaoController extends BaseController
 
     public function destroy($id): JsonResponse
     {
-        $caminhao = $this->caminhaoService->delete($id);
+        $caminhao = $this->caminhaoService->destroy($id);
 
         if ($caminhao !== false) {
             return $this->sendResponse([], 'caminhao deletado com sucesso.');

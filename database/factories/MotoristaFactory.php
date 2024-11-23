@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Motorista;
+use App\Models\Transportadora;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -15,10 +16,10 @@ class MotoristaFactory extends Factory
     public function definition(): array
     {
         return [
-            'nome_motorista' => $this->faker->name(),
-            'cpf_motorista' => $this->faker->unique()->numerify('###########'),
-            'data_nascimento_motorista' => $this->faker->date(),
-            'email_motorista' => $this->faker->unique()->safeEmail,
+            'nome_motorista' => fake()->name(),
+            'cpf_motorista' => fake()->cpf(),
+            'data_nascimento_motorista' => fake()->date(format: 'd/m/Y'),
+            'email_motorista' => fake()->email()
         ];
     }
 }

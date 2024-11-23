@@ -2,9 +2,11 @@
 
 namespace App\Http\Requests\Api\Motorista;
 
+use App\Rules\Cpf;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class UpdateMotoristaRequest extends FormRequest
+class UpdateMotoristaRequest extends BaseMotoristaRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,20 +25,9 @@ class UpdateMotoristaRequest extends FormRequest
     {
         return [
             'nome_motorista' => 'required|max:100|string',
-            'cpf_motorista' => 'unique:motoristas|numeric',
-            'data_nascimento_motorista' => 'required|date',
+            'cpf_motorista' => ['required',new Cpf(),Rule::unique('motoristas')->ignore($this->motorista)],
+            'data_nascimento_motorista' => 'required|date|before_or_equal:' . now()->subYears(18)->format('Y-m-d'),
             'email_motorista' => 'nullable|email'
-        ];
-    }
-
-    public function messages()
-    {
-        return [
-            'nome_motorista.required' => 'O campo Nome é obrigatorio.',
-            'cpf_motorista.numeric' => 'Informar somente números no CPF.',
-            'cpf_motorista.unique' => 'CPF já cadastrado, informe um cpf diferente.',
-            'data_nascimento_motorista' => 'Campo Data de nascimento obrigatorio.',
-            'email_motorista.email' => 'Informe um email válido.',
         ];
     }
 }

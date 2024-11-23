@@ -41,7 +41,7 @@ class TransportadoraController extends BaseController
         $transportadora = $this->transportadoraService->create($request->validated());
 
         if ($transportadora === false) {
-            return $this->sendError('Erro ao cadastrar .');
+            return $this->sendError('Erro ao cadastrar a Transportadora.');
         }
 
         return $this->sendResponse(new TransportadoraResource($transportadora), 'Transportadora adicionada com sucesso.');

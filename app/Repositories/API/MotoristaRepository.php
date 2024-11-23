@@ -13,10 +13,8 @@ class MotoristaRepository implements MotoristaRepositoryInterface
     {
         try {
             return Motorista::paginate(5);
-            //return $motoristas;
         } catch (Exception $ex) {
             throw new Exception("Erro ao buscar motoristas: " .$ex->getMessage());
-            //return false;
         }
     }
 
@@ -40,15 +38,15 @@ class MotoristaRepository implements MotoristaRepositoryInterface
         }
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
         try {
             $motorista = Motorista::findOrFail($id);
+            $motorista->delete();
+            return response()->noContent();
         } catch (ModelNotFoundException $ex) {
             return false;
         }
-
-        $motorista->delete();
     }
 
     public function findById($id)
