@@ -13,7 +13,7 @@ Route::controller(RegisterController::class)->group(function(){
     Route::post('login', 'login');
 });
 
-// Route::middleware('auth:sanctum')->group(function () {
+Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('transportadoras', TransportadoraController::class);
     Route::apiResource('motoristas', MotoristaController::class);
     Route::apiResource('modelos', ModeloController::class);
@@ -26,4 +26,4 @@ Route::controller(RegisterController::class)->group(function(){
 
     Route::post('motoristas/{motorista}/transportadoras/{transportadora}', [MotoristaController::class, 'addTransportadora']);
     Route::delete('motoristas/{motorista}/transportadoras/{transportadora}', [MotoristaController::class, 'removeTransportadora']);
-// });
+});
