@@ -4,6 +4,7 @@ namespace App\Services\Api;
 
 use App\Interfaces\Api\TransportadoraRepositoryInterface;
 use App\Models\Transportadora;
+use Illuminate\Http\Request;
 
 class TransportadoraService
 {
@@ -12,9 +13,9 @@ class TransportadoraService
     )
     { }
 
-    public function getAll()
+    public function getAll(Request $request)
     {
-        return $this->transportadoraRepositoryInterface->getAll();
+        return $this->transportadoraRepositoryInterface->getAll($request);
     }
 
     public function create(array $data)

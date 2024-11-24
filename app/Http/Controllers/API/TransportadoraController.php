@@ -9,6 +9,7 @@ use App\Http\Resources\Api\TransportadoraResource;
 use App\Models\Transportadora;
 use App\Services\Api\TransportadoraService;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class TransportadoraController extends BaseController
 {
@@ -17,9 +18,9 @@ class TransportadoraController extends BaseController
     )
     { }
 
-    public function index(): JsonResponse
+    public function index(Request $request): JsonResponse
     {
-        $transportadora = $this->transportadoraService->getAll();
+        $transportadora = $this->transportadoraService->getAll($request);
 
         return $this->sendResponse(TransportadoraResource::collection($transportadora),
                         'Transportadoras listadas com sucesso.');

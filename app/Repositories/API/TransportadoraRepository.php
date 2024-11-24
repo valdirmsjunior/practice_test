@@ -7,13 +7,15 @@ use App\Interfaces\Api\TransportadoraRepositoryInterface;
 use App\Models\Transportadora;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\Request;
 
 class TransportadoraRepository implements TransportadoraRepositoryInterface
 {
-    public function getAll()
+    public function getAll(Request $request)
     {
+        $perPage = $request->get('per_page', 5);
         try {
-            return Transportadora::paginate(5);
+            return Transportadora::paginate($perPage);
         } catch (Exception $ex) {
             return false;
         }
