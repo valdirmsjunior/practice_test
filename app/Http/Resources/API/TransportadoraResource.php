@@ -26,7 +26,7 @@ class TransportadoraResource extends JsonResource
 
     public static function collection($resource)
     {
-        return tap(parent::collection($resource), function ($collection) use ($resource) {//+
+        return tap(parent::collection($resource), function ($collection) use ($resource) {
             $collection->additional(['meta' => [
                 'total' => $resource->total(),
                 'per_page' => $resource->perPage(),

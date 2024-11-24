@@ -3,6 +3,7 @@
 namespace App\Services\Api;
 
 use App\Interfaces\Api\ModeloRepositoryInterface;
+use Illuminate\Http\Request;
 
 class ModeloService
 {
@@ -14,9 +15,9 @@ class ModeloService
     )
     {  }
 
-    public function getAll()
+    public function getAll(Request $request)
     {
-        return $this->modeloRepository->getAll();
+        return $this->modeloRepository->getAll($request);
     }
 
     public function create(array $data)

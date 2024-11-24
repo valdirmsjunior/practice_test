@@ -17,9 +17,9 @@ class CaminhaoController extends BaseController
     )
     { }
 
-    public function index(): JsonResponse
+    public function index(Request $request): JsonResponse
     {
-        $caminhoes = $this->caminhaoService->getAll();
+        $caminhoes = $this->caminhaoService->getAll($request);
 
         return $this->sendResponse(CaminhaoResource::collection($caminhoes),
                         'caminhoes listados com sucesso.');

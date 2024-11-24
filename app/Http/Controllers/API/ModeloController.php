@@ -6,6 +6,7 @@ use App\Http\Requests\Api\Modelo\ModeloRequest;
 use App\Http\Resources\Api\ModeloResource;
 use App\Services\Api\ModeloService;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class ModeloController extends BaseController
 {
@@ -14,9 +15,9 @@ class ModeloController extends BaseController
     )
     { }
 
-    public function index(): JsonResponse
+    public function index(Request $request): JsonResponse
     {
-        $modelos = $this->modeloService->getAll();
+        $modelos = $this->modeloService->getAll($request);
 
         return $this->sendResponse(ModeloResource::collection($modelos),
                         'Modelos listados com sucesso.');

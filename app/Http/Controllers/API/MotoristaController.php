@@ -18,9 +18,9 @@ class MotoristaController extends BaseController
     )
     { }
 
-    public function index(): JsonResponse
+    public function index(Request $request): JsonResponse
     {
-        $motoristas = $this->motoristaService->getAll();
+        $motoristas = $this->motoristaService->getAll($request);
 
         return $this->sendResponse(MotoristaResource::collection($motoristas),
                         'Motoristas listados com sucesso.');

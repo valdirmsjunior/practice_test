@@ -4,6 +4,7 @@ namespace App\Services\Api;
 
 use App\Interfaces\Api\MotoristaRepositoryInterface;
 use App\Models\Motorista;
+use Illuminate\Http\Request;
 
 class MotoristaService
 {
@@ -12,9 +13,9 @@ class MotoristaService
     )
     { }
 
-    public function getAll()
+    public function getAll(Request $request)
     {
-        return $this->motoristaRepository->getAll();
+        return $this->motoristaRepository->getAll($request);
     }
 
     public function create(array $data)

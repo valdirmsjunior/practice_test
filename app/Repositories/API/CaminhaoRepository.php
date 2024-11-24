@@ -6,13 +6,15 @@ use App\Interfaces\Api\CaminhaoRepositoryInterface;
 use App\Models\Caminhao;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\Request;
 
 class CaminhaoRepository implements CaminhaoRepositoryInterface
 {
-    public function getAll()
+    public function getAll(Request $request)
     {
+        $perPage = $request->get('per_page', 5);
         try {
-            return Caminhao::paginate(5);
+            return Caminhao::paginate($perPage);
         } catch (Exception $ex) {
             return false;
         }

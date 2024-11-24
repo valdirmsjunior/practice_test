@@ -13,14 +13,24 @@ class CaminhaoResource extends JsonResource
      * @return array<string, mixed>
      */
     public function toArray(Request $request): array
-    {//dd($request->all());
+    {
         return [
             'id' => $this->id,
             'placa_caminhao' => $this->placa_caminhao,
             'motorista_id' => $this->motorista_id,
             'modelo_id' => $this->modelo_id,
-            //'motorista' => $this->motorista,
-            //'modelo' => $this->modelo,
         ];
+    }
+
+    public static function collection($resource)
+    {
+        return tap(parent::collection($resource), function ($collection) use ($resource) {
+            $collection->additional(['meta' => [
+                'total' => $resource->total(),
+                'per_page' => $resource->perPage(),
+                'current_page' => $resource->currentPage(),
+                'last_page' => $resource->lastPage(),
+            ]]);
+        });
     }
 }

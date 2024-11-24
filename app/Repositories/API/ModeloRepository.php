@@ -6,13 +6,15 @@ use App\Interfaces\Api\ModeloRepositoryInterface;
 use App\Models\Modelo;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\Request;
 
 class ModeloRepository implements ModeloRepositoryInterface
 {
-    public function getAll()
+    public function getAll(Request $request)
     {
+        $perPage = $request->get('per_page', 5);
         try {
-            return Modelo::paginate(5);
+            return Modelo::paginate($perPage);
         } catch (Exception $e) {
             return false;
         }

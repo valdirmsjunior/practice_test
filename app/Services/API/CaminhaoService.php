@@ -3,7 +3,7 @@
 namespace App\Services\Api;
 
 use App\Interfaces\Api\CaminhaoRepositoryInterface;
-use App\Models\Caminhao;
+use Illuminate\Http\Request;
 
 class CaminhaoService
 {
@@ -15,9 +15,9 @@ class CaminhaoService
     )
     { }
 
-    public function getAll()
+    public function getAll(Request $request)
     {
-        return $this->caminhaoRepositoryInterface->getAll();
+        return $this->caminhaoRepositoryInterface->getAll($request);
     }
 
     public function create(array $data)

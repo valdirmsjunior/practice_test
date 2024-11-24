@@ -6,13 +6,15 @@ use App\Interfaces\Api\MotoristaRepositoryInterface;
 use App\Models\Motorista;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\Request;
 
 class MotoristaRepository implements MotoristaRepositoryInterface
 {
-    public function getAll()
+    public function getAll(Request $request)
     {
+        $perPage = $request->get('per_page', 5);
         try {
-            return Motorista::paginate(5);
+            return Motorista::paginate($perPage);
         } catch (Exception $ex) {
             throw new Exception("Erro ao buscar motoristas: " .$ex->getMessage());
         }
